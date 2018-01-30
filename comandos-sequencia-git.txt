@@ -1,0 +1,113 @@
+git config --global user.name "Stephano"
+
+git config --global user.email "stephano.grp@gmail.com"
+
+git config --global core.editor s
+
+git config --list
+
+cd C:/Users/steph/Desktop
+
+mkdir git-course
+
+cd git-course/
+
+git init
+
+ls -la
+
+cd .git/
+
+ls
+
+vi Readme.md
+> i
+>> # Github 
+esc
+> :wq
+
+ls
+
+vi Readme.ms
+
+// File Status Lifecycle
+// untracked, unmodified, modified, staged (commit, arquivos voltam ao estado unmodified)
+
+git status
+
+git add Readme.ms
+
+git commit -m "Add Readme.md"
+
+git log
+
+git log --decorate
+
+git log --author="Stephano Giuseppe"
+
+git shortlog
+
+git shortlog -sn
+
+git log --graph
+
+vi Readme......
+
+git diff // fazer antes de dar um commit para verificar as mudanças
+
+git diff --name-only
+
+git commit -am "Edit Readme.md" // -am arquivos modificados + mensagem
+
+git log // ve o numero dos commits e detalhes
+
+git show (numero do commit) // ver as modificações do commit selecionado
+
+vi Readme.md.....
+
+git diff
+
+git checkout // para desfazer - retorna o arquivo
+
+git add Readme.md
+
+git diff // nao vai encontrar divergencia
+
+git reset HEAD Readme.md // remove o arquivo da fila do staging
+
+git diff // com modificaçao
+
+git checkout
+
+vi Readme.md.....
+
+git commit -am "qqc"
+
+git reset --soft (ou --mixed ou --hard) (numero do commit ~um antes~ que queremos deletar)
+// --soft (mata commit e deixa arquivo no staged)
+// --mixed (mata commit e volta arquivo para antes de staged, usa git diff)
+// --hard (mata todo commit e deleta tudo)
+
+> Criar um repositório no Github
+> https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+cd ~/.ssh/
+
+ls
+
+cat id_rsa.pub
+
+> Copiar chave gerada
+
+> No Github > Setting > SSH and GPG keys > New SSH key
+
+> vai no projeto do github
+> copia o comando do repositorio existente
+> https://github.com/stephanogiuseppe/anotacoes-basicas
+> entra na pasta do repositorio e cola o comando
+
+git remote
+
+git remote -v
+
+git push -u origin master // para onde vai e de onde vem
