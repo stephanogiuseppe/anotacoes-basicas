@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Document</title>
+	</head>
+	<body>
+		<header>
+			<h1 id="titulo"></h1>
+		</header>
+
+		<section>
+			<p id="paragrafo"></p>
+		</section>
+
+		<script>
+			let letras = [
+				{ letra: 'A', min: 76, max: 100 },
+				{ letra: 'B', min: 51, max: 75 },
+				{ letra: 'C', min: 26, max: 50 },
+				{ letra: 'D', min: 11, max: 25 },
+				{ letra: 'E', min: 0, max: 10 }
+			];
+
+			let letraSelecionada = { letra: 'E', min: 9, max: 28 };
+			letraSelecionada = { letra: 'A', min: 10, max: 28 };
+			let aux;
+
+			for (let i = 0; i < letras.length; i++) {
+				if (letras[i].letra === letraSelecionada.letra) {
+
+					letras[i] = letraSelecionada;
+					aux = i;
+					
+					if (letras[aux - 1] !== undefined) {
+						letras[aux - 1].min = letraSelecionada.max + 1;
+						// for para anteriores
+						let l = Object.assign({}, letraSelecionada);
+						for (let j = aux - 1; j >= 0; j--) {
+							letras[j].min = l.max + 1;
+							if (letras[j].min >= letras[j].max) {
+								letras[j].max = letras[j].min + 1;
+							}
+							l = Object.assign({}, letras[j]);
+						}
+					}
+
+					if (letras[aux + 1] !== undefined) {
+						letras[aux + 1].max = letraSelecionada.min - 1;
+						// for para posteriores
+						l = Object.assign({}, letraSelecionada);
+						for (let k = aux + 1; k < letras.length; k++) {
+							letras[k].max = l.min - 1;
+							if (letras[k].max <= letras[k].min) {
+								letras[k].min = letras[k].max - 1;
+							}
+							l = Object.assign({}, letras[k]);
+						}
+					}
+				}
+			}
+
+			letras.map((key) => {
+				key.min < 0 ? key.min = 0 : key.min = key.min;
+				key.max < 0 ? key.max = 0 : key.max = key.max;
+			});
+
+			letras[0].max = 100;
+			letras[letras.length - 1].min = 0;
+			console.log(letras);
+		</script>
+	</body>
+</html>
